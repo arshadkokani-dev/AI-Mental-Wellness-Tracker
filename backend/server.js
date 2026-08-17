@@ -4,12 +4,14 @@ import mongoose from "mongoose";
 import "./models/User.js";
 import "./models/WellnessEntry.js";
 import authRoutes from "./routes/authRoutes.js";
+import wellnessRoutes from "./routes/wellnessRoutes.js";
 
 dotenv.config();
 
 const app = express();
 app.use(express.json());
 app.use("/api/auth", authRoutes);
+app.use("/api/wellness", wellnessRoutes);
 
 const PORT = process.env.PORT || 5000;
 
