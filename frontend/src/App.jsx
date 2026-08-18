@@ -1,38 +1,23 @@
-import { useState } from 'react'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import Login from './components/Login'
+import Signup from './components/Signup'
 import './App.css'
 
 function App() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-
   return (
-    <div className="app">
-      <div className="login-container">
-        <h1>AI Mental Wellness Tracker</h1>
+    <BrowserRouter>
+      <div className="app">
+        <Routes>
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
 
-        <p className="subtitle">
-          A safe space to understand how you feel.
-        </p>
-
-        <form className="login-form">
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+          <Route
+            path="/"
+            element={<Navigate to="/signup" replace />}
           />
-
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-
-          <button type="submit">Login</button>
-        </form>
+        </Routes>
       </div>
-    </div>
+    </BrowserRouter>
   )
 }
 

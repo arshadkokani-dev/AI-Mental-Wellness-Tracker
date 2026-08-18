@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import cors from "cors";
 import "./models/User.js";
 import "./models/WellnessEntry.js";
 import authRoutes from "./routes/authRoutes.js";
@@ -9,6 +10,7 @@ import wellnessRoutes from "./routes/wellnessRoutes.js";
 dotenv.config();
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/wellness", wellnessRoutes);
