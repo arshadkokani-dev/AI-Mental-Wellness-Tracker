@@ -113,3 +113,401 @@ body {
     font-size: 25px;
   }
 }
+
+.dashboard {
+  min-height: 100vh;
+  padding: 40px 24px;
+  background: #f7f7fb;
+}
+
+.dashboard-header {
+  max-width: 1000px;
+  margin: 0 auto 32px;
+}
+
+.dashboard-label,
+.card-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+  color: #6b6b85;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  font-size: 38px;
+  color: #29294a;
+}
+
+.dashboard-subtitle {
+  margin-top: 10px;
+  color: #77778c;
+  font-size: 17px;
+}
+
+.dashboard-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.checkin-card {
+  padding: 32px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #eeeaff, #e8f7f5);
+  box-shadow: 0 12px 35px rgba(60, 50, 100, 0.08);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.checkin-card h2 {
+  margin: 5px 0 10px;
+  font-size: 26px;
+  color: #29294a;
+}
+
+.checkin-card p {
+  color: #6f6f82;
+}
+
+.primary-button {
+  border: none;
+  padding: 14px 22px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #6255d9, #3e9fc5);
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.primary-button:hover {
+  opacity: 0.9;
+}
+
+.wellness-section {
+  margin-top: 32px;
+  padding: 28px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(50, 50, 80, 0.06);
+}
+
+.wellness-section h2 {
+  margin-top: 0;
+  color: #29294a;
+}
+
+.wellness-section p {
+  color: #77778c;
+}
+
+@media (max-width: 650px) {
+  .dashboard {
+    padding: 24px 16px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 30px;
+  }
+
+  .dashboard-subtitle {
+    font-size: 15px;
+  }
+
+  .checkin-card {
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .checkin-card h2 {
+    font-size: 22px;
+  }
+
+  .primary-button {
+    width: 100%;
+  }
+}
+
+/* Wellness Check-in */
+
+.checkin-page {
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: #f7f7fb;
+}
+
+.checkin-page .checkin-card {
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 35px;
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 12px 35px rgba(60, 50, 100, 0.08);
+
+  display: block;
+}
+
+.checkin-page h1 {
+  margin: 0 0 8px;
+  color: #29294a;
+}
+
+.checkin-subtitle {
+  color: #77778c;
+  margin-bottom: 30px;
+}
+
+.checkin-page form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.checkin-page label {
+  margin-top: 12px;
+  font-weight: 600;
+  color: #3d3d55;
+}
+
+.checkin-page input[type="range"] {
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.checkin-page select,
+.checkin-page textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid #d8d8e5;
+  border-radius: 10px;
+  font-size: 15px;
+  background: #fafafd;
+}
+
+.checkin-page textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.checkin-page .primary-button {
+  margin-top: 20px;
+  width: 100%;
+}
+
+/* Mobile */
+@media (max-width: 650px) {
+  .checkin-page {
+    padding: 24px 16px;
+  }
+
+  .checkin-page .checkin-card {
+    padding: 24px 20px;
+  }
+
+  .checkin-page h1 {
+    font-size: 28px;
+  }
+}
+
+/* Check-in form layout */
+
+.checkin-page .metric {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.checkin-page .metric label {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #30304a;
+}
+
+.checkin-page .metric input[type="range"] {
+  width: 100%;
+  margin: 0;
+}
+
+/* Emotion and journal */
+
+.checkin-page form > label {
+  display: block;
+  margin-top: 12px;
+  margin-bottom: 8px;
+}
+
+.checkin-page select,
+.checkin-page textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.checkin-page textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+/* Better spacing before save button */
+
+.checkin-page .primary-button {
+  margin-top: 18px;
+}
+
+/* Mobile */
+
+@media (max-width: 650px) {
+  .checkin-page {
+    padding: 20px 14px;
+  }
+
+  .checkin-page .checkin-card {
+    padding: 24px 18px;
+  }
+
+  .checkin-page h1 {
+    font-size: 30px;
+    line-height: 1.2;
+  }
+
+  .checkin-page .metric {
+    margin-bottom: 18px;
+  }
+}
+
+/* ===== CHECK-IN FINAL OVERRIDES ===== */
+
+.checkin-page .checkin-card {
+  display: block;
+  position: relative;
+  overflow: visible;
+}
+
+.checkin-page .card-label {
+  position: static;
+  margin: 0 0 12px;
+  text-align: center;
+}
+
+.checkin-page h1 {
+  position: static;
+  margin: 0 0 10px;
+  padding: 0;
+  text-align: center;
+  line-height: 1.2;
+  font-size: 48px;
+}
+
+.checkin-page .checkin-subtitle {
+  position: static;
+  margin: 0 0 35px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* Keep every metric completely separate */
+
+.checkin-page form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.checkin-page .metric {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.checkin-page .metric label {
+  display: block;
+  margin: 0;
+  text-align: left;
+  line-height: 1.4;
+}
+
+.checkin-page .metric input[type="range"] {
+  display: block;
+  width: 100%;
+  margin: 0;
+}
+
+/* Emotion */
+
+.checkin-page form > label {
+  display: block;
+  margin: 8px 0 8px;
+  text-align: left;
+  line-height: 1.4;
+}
+
+.checkin-page select {
+  display: block;
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 12px;
+  color: #29294a;
+  background: #ffffff;
+  border: 1px solid #d8d8e5;
+  border-radius: 10px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* Journal */
+
+.checkin-page textarea {
+  display: block;
+  width: 100%;
+  min-height: 140px;
+  padding: 14px;
+  color: #29294a;
+  background: #ffffff;
+  border: 1px solid #d8d8e5;
+  border-radius: 12px;
+  font-size: 16px;
+  line-height: 1.5;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+.checkin-page textarea::placeholder {
+  color: #8a8a9a;
+}
+
+/* Save button */
+
+.checkin-page .primary-button {
+  display: block;
+  width: 100%;
+  margin-top: 22px;
+}
+
+/* Mobile */
+
+@media (max-width: 650px) {
+  .checkin-page h1 {
+    font-size: 32px;
+  }
+
+  .checkin-page .checkin-subtitle {
+    margin-bottom: 28px;
+  }
+
+  .checkin-page .metric {
+    margin-bottom: 20px;
+  }
+
+  .checkin-page .checkin-card {
+    padding: 24px 18px;
+  }
+}
