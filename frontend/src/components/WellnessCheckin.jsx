@@ -39,7 +39,11 @@ function WellnessCheckin() {
       console.log(data)
 
       if (response.ok) {
+        alert('Wellness check-in saved successfully!')
         console.log('Wellness entry created successfully')
+      } else {
+        console.error('Failed to save wellness entry:', data)
+        alert(data.message || 'Failed to save check-in')
       }
     } catch (error) {
       console.error('Error creating wellness entry:', error)

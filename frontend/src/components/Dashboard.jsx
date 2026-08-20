@@ -1,8 +1,36 @@
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 
 function Dashboard() {
   const navigate = useNavigate()
+  const [entries, setEntries] = useState([])
+
+useEffect(() => {
+  const fetchEntries = async () => {
+    const token = localStorage.getItem('token')
+
+    try {
+      const response = await fetch('http://localhost:5000/api/wellness', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      const data = await response.json()
+
+      console.log('Wellness entries:', data)
+
+      if (response.ok) {
+        setEntries(data)
+      }
+    } catch (error) {
+      console.error('Error fetching wellness entries:', error)
+    }
+  }
+
+  fetchEntries()
+}, [])
 
   return (
     <div className="dashboard">
@@ -15,6 +43,7 @@ function Dashboard() {
           </p>
         </div>
       </header>
+    
 
       <main className="dashboard-content">
         <section className="checkin-card">
@@ -32,12 +61,29 @@ function Dashboard() {
         </section>
 
         <section className="wellness-section">
-          <h2>Your wellness</h2>
-          <p>No wellness entries yet. Your first check-in will appear here.</p>
-        </section>
-      </main>
+  <h2>Your wellness</h2>
+
+  {entries.length === 0 ? (
+    <p>No wellness entries yet. Your first check-in will appear here.</p>
+  ) : (
+    <div>
+      {entries.map((entry) => (
+        <div key={entry._id}>
+          <p>Mood: {entry.mood}/10</p>
+          <p>Energy: {entry.energy}/10</p>
+          <p>Sleep: {entry.sleep}/10</p>
+          <p>Stress: {entry.stress}/10</p>
+          <p>Anxiety: {entry.anxiety}/10</p>
+          <p>Emotion: {entry.emotion}</p>
+        </div>
+      ))}
     </div>
+  )}
+</section>
+</main>
+</div>
   )
 }
+
 
 export default Dashboard
