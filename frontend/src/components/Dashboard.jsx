@@ -22,7 +22,7 @@ useEffect(() => {
       console.log('Wellness entries:', data)
 
       if (response.ok) {
-        setEntries(data)
+        setEntries(data.entries)
       }
     } catch (error) {
       console.error('Error fetching wellness entries:', error)
@@ -66,15 +66,28 @@ useEffect(() => {
   {entries.length === 0 ? (
     <p>No wellness entries yet. Your first check-in will appear here.</p>
   ) : (
-    <div>
+    <div className="wellness-entries">
       {entries.map((entry) => (
-        <div key={entry._id}>
-          <p>Mood: {entry.mood}/10</p>
-          <p>Energy: {entry.energy}/10</p>
-          <p>Sleep: {entry.sleep}/10</p>
-          <p>Stress: {entry.stress}/10</p>
-          <p>Anxiety: {entry.anxiety}/10</p>
-          <p>Emotion: {entry.emotion}</p>
+        <div className="wellness-entry" key={entry._id}>
+
+          <p className="entry-date">
+            Date: <strong>{new Date(entry.date).toLocaleDateString()}</strong>
+          </p>
+
+          <div className="entry-metrics">
+            <p><strong>Mood:</strong> {entry.mood}/10</p>
+            <p><strong>Energy:</strong> {entry.energy}/10</p>
+            <p><strong>Sleep:</strong> {entry.sleep}/10</p>
+            <p><strong>Stress:</strong> {entry.stress}/10</p>
+            <p><strong>Anxiety:</strong> {entry.anxiety}/10</p>
+            <p><strong>Emotion:</strong> {entry.emotion}</p>
+          </div>
+
+          <div className="entry-journal">
+            <strong>Journal</strong>
+            <p>{entry.journal}</p>
+          </div>
+
         </div>
       ))}
     </div>

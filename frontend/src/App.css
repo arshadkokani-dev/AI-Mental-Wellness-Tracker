@@ -206,6 +206,78 @@ body {
   color: #77778c;
 }
 
+.wellness-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-top: 24px;
+}
+
+.wellness-entry {
+  text-align: left;
+  padding: 24px 28px;
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+}
+
+.entry-date {
+  margin: 0;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #dddddd;
+  font-size: 16px;
+  color: #444;
+  text-align: left;
+}
+
+.entry-date strong {
+  font-weight: 700;
+  color: #222;
+}
+
+.entry-metrics {
+  margin-top: 18px;
+  padding-left: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.entry-metrics p {
+  margin: 0;
+  font-size: 15px;
+  color: #444;
+  text-align: left;
+}
+
+.entry-metrics strong {
+  display: inline-block;
+  width: 80px;
+  color: #222;
+}
+
+.entry-journal {
+  margin-top: 22px;
+  padding-top: 18px;
+  padding-left: 12px;
+  border-top: 1px solid #eeeeee;
+  text-align: left;
+}
+
+.entry-journal strong {
+  font-size: 15px;
+  color: #222;
+}
+
+.entry-journal p {
+  margin: 8px 0 0;
+  line-height: 1.6;
+  color: #555;
+  text-align: left;
+}
+
+
+/* Mobile */
 @media (max-width: 650px) {
   .dashboard {
     padding: 24px 16px;
@@ -218,6 +290,19 @@ body {
   .dashboard-subtitle {
     font-size: 15px;
   }
+
+  .wellness-entry {
+    padding: 20px;
+  }
+
+  .entry-metrics {
+    padding-left: 4px;
+  }
+
+  .entry-journal {
+    padding-left: 4px;
+  }
+}
 
   .checkin-card {
     padding: 24px;
@@ -232,7 +317,7 @@ body {
   .primary-button {
     width: 100%;
   }
-}
+
 
 /* Wellness Check-in */
 
