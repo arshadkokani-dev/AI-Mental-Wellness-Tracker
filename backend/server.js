@@ -7,6 +7,7 @@ import "./models/WellnessEntry.js";
 import authRoutes from "./routes/authRoutes.js";
 import wellnessRoutes from "./routes/wellnessRoutes.js";
 import cbtRoutes from "./routes/cbtRoutes.js";
+import aiRoutes from "./routes/aiRoutes.js";
 
 dotenv.config();
 
@@ -16,6 +17,8 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/wellness", wellnessRoutes);
 app.use("/api/cbt", cbtRoutes);
+app.use("/api/ai", aiRoutes);
+
 const PORT = process.env.PORT || 5000;
 
 app.get("/", (req, res) => {
