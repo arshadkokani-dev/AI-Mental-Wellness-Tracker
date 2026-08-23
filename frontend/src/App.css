@@ -596,3 +596,261 @@ body {
     padding: 24px 18px;
   }
 }
+
+/* =========================
+   CBT JOURNAL
+   ========================= */
+
+.cbt-page {
+  min-height: 100vh;
+  padding: 60px 20px;
+  background: #f7f7fb;
+}
+
+.cbt-container {
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 50px;
+  border-radius: 24px;
+  box-shadow: 0 12px 35px rgba(50, 50, 80, 0.07);
+}
+
+
+/* ---------- Header ---------- */
+
+.cbt-header {
+  margin-bottom: 45px;
+}
+
+.cbt-label {
+  margin: 0 0 12px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #5964d8;
+}
+
+.cbt-header h1 {
+  margin: 0;
+  font-size: 38px;
+  line-height: 1.2;
+  color: #29294a;
+}
+
+.cbt-description {
+  max-width: 650px;
+  margin: 14px 0 0;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #77778c;
+}
+
+
+/* ---------- Form ---------- */
+
+.cbt-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+
+/* ---------- Individual Question ---------- */
+
+.cbt-question {
+  padding: 0 0 34px;
+  margin-bottom: 34px;
+  border-bottom: 1px solid #e8e8ef;
+}
+
+.cbt-question label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+
+  font-size: 18px;
+  font-weight: 700;
+  color: #29294a;
+}
+
+
+/* Question number */
+
+.question-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  border-radius: 10px;
+
+  background: #eef0ff;
+  color: #5964d8;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+
+/* Small explanation under question */
+
+.question-hint {
+  margin: 0 0 14px 46px;
+
+  font-size: 14px;
+  line-height: 1.5;
+
+  color: #88889a;
+}
+
+
+/* ---------- Inputs ---------- */
+
+.cbt-question textarea,
+.cbt-question input {
+  width: 100%;
+  box-sizing: border-box;
+
+  border: 1px solid #dedee8;
+  border-radius: 14px;
+
+  background: #fafafe;
+
+  padding: 16px 18px;
+
+  font-family: inherit;
+  font-size: 15px;
+  color: #29294a;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+
+.cbt-question textarea {
+  min-height: 125px;
+  resize: vertical;
+}
+
+
+.cbt-question input {
+  height: 54px;
+}
+
+
+/* Placeholder */
+
+.cbt-question textarea::placeholder,
+.cbt-question input::placeholder {
+  color: #aaaabc;
+}
+
+
+/* Focus */
+
+.cbt-question textarea:focus,
+.cbt-question input:focus {
+  border-color: #5964d8;
+  background: #ffffff;
+
+  box-shadow: 0 0 0 4px rgba(89, 100, 216, 0.10);
+}
+
+
+/* ---------- Save Button ---------- */
+
+.cbt-save-button {
+  width: 100%;
+  min-height: 56px;
+
+  margin-top: 8px;
+
+  border: none;
+  border-radius: 14px;
+
+  background: linear-gradient(
+    135deg,
+    #4f5bd5,
+    #24a9c5
+  );
+
+  color: white;
+
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+
+.cbt-save-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(79, 91, 213, 0.20);
+}
+
+
+.cbt-save-button:active {
+  transform: translateY(0);
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 650px) {
+
+  .cbt-page {
+    padding: 25px 14px;
+  }
+
+  .cbt-container {
+    padding: 30px 20px;
+    border-radius: 20px;
+  }
+
+  .cbt-header {
+    margin-bottom: 35px;
+  }
+
+  .cbt-header h1 {
+    font-size: 30px;
+  }
+
+  .cbt-description {
+    font-size: 14px;
+  }
+
+  .cbt-question label {
+    align-items: flex-start;
+    font-size: 16px;
+  }
+
+  .question-number {
+    flex-shrink: 0;
+  }
+
+  .question-hint {
+    margin-left: 46px;
+    font-size: 13px;
+  }
+
+  .cbt-question textarea {
+    min-height: 110px;
+  }
+}

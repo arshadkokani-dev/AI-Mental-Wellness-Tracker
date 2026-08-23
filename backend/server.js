@@ -6,6 +6,7 @@ import "./models/User.js";
 import "./models/WellnessEntry.js";
 import authRoutes from "./routes/authRoutes.js";
 import wellnessRoutes from "./routes/wellnessRoutes.js";
+import cbtRoutes from "./routes/cbtRoutes.js";
 
 dotenv.config();
 
@@ -14,7 +15,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/wellness", wellnessRoutes);
-
+app.use("/api/cbt", cbtRoutes);
 const PORT = process.env.PORT || 5000;
 
 app.get("/", (req, res) => {

@@ -3,6 +3,7 @@ import Login from './components/Login'
 import Signup from './components/Signup'
 import Dashboard from './components/Dashboard'
 import WellnessCheckin from './components/WellnessCheckin'
+import CBTJournal from './components/CBTJournal'
 import './App.css'
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/checkin" element={<WellnessCheckin />} />
+          <Route path="/cbt-journal" element={<CBTJournal />} />
 
           <Route
             path="/"
