@@ -8,6 +8,7 @@ import authRoutes from "./routes/authRoutes.js";
 import wellnessRoutes from "./routes/wellnessRoutes.js";
 import cbtRoutes from "./routes/cbtRoutes.js";
 import aiRoutes from "./routes/aiRoutes.js";
+import analyticsRoutes from "./routes/analyticsRoutes.js";
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/wellness", wellnessRoutes);
 app.use("/api/cbt", cbtRoutes);
 app.use("/api/ai", aiRoutes);
+app.use("/api/analytics", analyticsRoutes);
 
 const PORT = process.env.PORT || 5000;
 
