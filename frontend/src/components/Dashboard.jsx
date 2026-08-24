@@ -27,7 +27,7 @@ function Dashboard() {
     try {
       const token = localStorage.getItem("token");
 
-      const response = await fetch("http://localhost:5000/api/analytics", {
+      const response = await fetch("http://10.122.185.153:5000/api/analytics", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -58,7 +58,7 @@ useEffect(() => {
     const token = localStorage.getItem('token')
 
     try {
-      const response = await fetch('http://localhost:5000/api/wellness', {
+      const response = await fetch('http://10.122.185.153:5000/api/wellness', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -79,7 +79,7 @@ useEffect(() => {
   fetchEntries()
 }, [])
 
-const emotionData = analytics
+const emotionData = analytics?.emotionCounts
   ? Object.entries(analytics.emotionCounts).map(([emotion, count]) => ({
       emotion,
       count,
@@ -119,7 +119,7 @@ const emotionData = analytics
 
   {!analyticsLoading &&
     !analyticsError &&
-    analytics && (
+    analytics?.averages && (
       <div className="summary-cards">
 
         <div className="summary-card">
@@ -149,6 +149,15 @@ const emotionData = analytics
 
       </div>
     )}
+
+    {!analyticsLoading &&
+      !analyticsError &&
+      analytics &&
+      !analytics.averages && (
+        <p>
+          No wellness data yet. Complete your first check-in to see your wellness snapshot.
+        </p>
+      )}
 </section>
 
         <section className="checkin-card">
@@ -203,7 +212,7 @@ const emotionData = analytics
   {!analyticsLoading &&
     !analyticsError &&
     analytics &&
-    analytics.trends.length > 0 && (
+    analytics.trends?.length > 0 && (
       <div className="chart-container">
         <ResponsiveContainer width="100%" height={350}>
           <LineChart
@@ -270,7 +279,7 @@ const emotionData = analytics
   {!analyticsLoading &&
     !analyticsError &&
     analytics &&
-    analytics.trends.length > 0 && (
+    analytics.trends?.length > 0 && (
       <div className="chart-container">
         <ResponsiveContainer width="100%" height={350}>
           <LineChart

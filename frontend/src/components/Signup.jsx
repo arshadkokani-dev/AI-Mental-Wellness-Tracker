@@ -1,16 +1,17 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Signup() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const navigate = useNavigate()
 
   const handleSignup = async (e) => {
   e.preventDefault()
 
   try {
-    const response = await fetch('http://localhost:5000/api/auth/signup', {
+    const response = await fetch('http://10.122.185.153:5000/api/auth/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -27,8 +28,10 @@ function Signup() {
     console.log(data)
 
     if (response.ok) {
-      // Signup successful, switch to login page
-      onSwitchToLogin()
+      console.log('Signup successful')
+      navigate('/login')
+    } else {
+      console.error('Signup failed:', data)
     }
   } catch (error) {
     console.error('Signup error:', error)

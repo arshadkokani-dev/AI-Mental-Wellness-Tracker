@@ -20,7 +20,7 @@ function WellnessCheckin() {
 
   try {
     const response = await fetch(
-      'http://localhost:5000/api/wellness',
+      'http://10.122.185.153:5000/api/wellness',
       {
         method: 'POST',
         headers: {
@@ -50,7 +50,7 @@ function WellnessCheckin() {
       setReflectionLoading(true)
 
       const aiResponse = await fetch(
-        'http://localhost:5000/api/ai/reflection',
+        'http://10.122.185.153:5000/api/ai/reflection',
         {
           method: 'POST',
           headers: {
