@@ -10,49 +10,98 @@ function WellnessCheckin() {
   const [emotion, setEmotion] = useState('')
   const [journal, setJournal] = useState('')
 
+  const [reflection, setReflection] = useState('')
+  const [reflectionLoading, setReflectionLoading] = useState(false)
+
   const handleSubmit = async (e) => {
-    e.preventDefault()
+  e.preventDefault()
 
-    const token = localStorage.getItem('token')
+  const token = localStorage.getItem('token')
 
-    try {
-      const response = await fetch(
-        'http://localhost:5000/api/wellness',
+  try {
+    const response = await fetch(
+      'http://localhost:5000/api/wellness',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          mood,
+          energy,
+          sleep,
+          stress,
+          anxiety,
+          emotion,
+          journal,
+          date: new Date(),
+        }),
+      }
+    )
+
+    const data = await response.json()
+
+    console.log(data)
+
+    if (response.ok) {
+      console.log('Wellness entry created successfully')
+
+      setReflectionLoading(true)
+
+      const aiResponse = await fetch(
+        'http://localhost:5000/api/ai/reflection',
         {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({
-            mood,
-            energy,
-            sleep,
-            stress,
-            anxiety,
-            emotion,
-            journal,
-            date: new Date(),
-          }),
         }
       )
 
-      const data = await response.json()
+      const aiData = await aiResponse.json()
 
-      console.log(data)
+      if (aiResponse.ok) {
+        console.log('AI DATA:', aiData)
+        console.log(
+          'AI REFLECTION OBJECT:',
+          aiData.reflection
+        )
 
-      if (response.ok) {
-        console.log('Wellness entry created successfully')
+        let reflectionData = aiData.reflection
+
+        if (typeof reflectionData === "string") {
+          try {
+            reflectionData = JSON.parse(reflectionData)
+          } catch (error) {
+            console.log("AI returned text instead of JSON. Using text response.")
+          }
+        }
+
+        setReflection(reflectionData)
       } else {
-        console.error('Failed to create wellness entry:', data)
+        console.error(
+          'Failed to generate AI reflection:',
+          aiData
+        )
       }
-    } catch (error) {
+
+      setReflectionLoading(false)
+    } else {
       console.error(
-        'Error creating wellness entry:',
-        error
+        'Failed to create wellness entry:',
+        data
       )
     }
+  } catch (error) {
+    console.error(
+      'Error creating wellness entry:',
+      error
+    )
+
+    setReflectionLoading(false)
   }
+}
 
   return (
     <div className="checkin-page">
@@ -178,6 +227,65 @@ function WellnessCheckin() {
           </button>
 
         </form>
+        
+        {reflectionLoading && (
+  <div className="ai-reflection">
+    <p className="card-label">AI REFLECTION</p>
+    <p>Reflecting on your check-in...</p>
+  </div>
+)}
+
+        {reflection && (
+  <div className="ai-reflection">
+    <p className="card-label">AI REFLECTION</p>
+
+    <h2>Your personal reflection</h2>
+
+    {typeof reflection === "string" ? (
+  <div className="reflection-text">
+    {reflection
+      .split(/\*\*(.*?)\*\*/)
+      .filter((text) => text.trim() !== "")
+      .map((text, index) => {
+        const isHeading = index % 2 === 0;
+
+        return isHeading ? (
+          <h3 className="reflection-heading" key={index}>
+            {text.trim()}
+          </h3>
+        ) : (
+          <p className="reflection-paragraph" key={index}>
+            {text.trim()}
+          </p>
+        );
+      })}
+  </div>
+) : (
+      <>
+        <div className="reflection-item">
+          <h3>🌿 What's showing up</h3>
+          <p>{reflection.whatIsShowingUp}</p>
+        </div>
+
+        <div className="reflection-item">
+          <h3>💪 What you handled well</h3>
+          <p>{reflection.whatTheyHandledWell}</p>
+        </div>
+
+        <div className="reflection-item">
+          <h3>🔎 A thought to revisit</h3>
+          <p>{reflection.thoughtToRevisit}</p>
+        </div>
+
+        <div className="reflection-item">
+          <h3>🌱 Gentle next step</h3>
+          <p>{reflection.gentleNextStep}</p>
+        </div>
+      </>
+    )}
+  </div>
+)}
+
       </div>
     </div>
   )

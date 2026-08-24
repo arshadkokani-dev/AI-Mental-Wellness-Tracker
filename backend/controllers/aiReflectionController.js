@@ -38,16 +38,22 @@ Evidence: ${cbtEntry?.evidence || "Not provided"}
 Alternative perspective: ${cbtEntry?.alternative || "Not provided"}
 What they would tell a friend: ${cbtEntry?.reflection || "Not provided"}
 
-Give a concise but personalized reflection.
+Return the reflection in exactly this JSON format:
 
-Focus on:
-1. Patterns or connections in the data.
-2. Something the user handled well.
-3. A thought or pattern worth reconsidering.
-4. One gentle, practical next step.
+{
+  "whatIsShowingUp": "A concise observation about patterns or connections in the user's data.",
+  "whatTheyHandledWell": "Something the user handled well.",
+  "thoughtToRevisit": "One thought or pattern worth reconsidering.",
+  "gentleNextStep": "One small, practical next step."
+}
 
-Do not diagnose the user or provide medical advice.
-Do not simply repeat the user's answers.
+Rules:
+- Keep each section concise but personalized.
+- Base everything only on the provided data.
+- Do not simply repeat the user's answers.
+- Do not diagnose mental health conditions.
+- Do not provide medical advice.
+- Return ONLY valid JSON. No markdown, no code fences, and no extra text.
 `;
 
     const response = await groq.chat.completions.create({
@@ -67,9 +73,42 @@ Do not simply repeat the user's answers.
 
       temperature: 0.7,
       max_tokens: 500,
+      response_format: {
+  type: "json_schema",
+  json_schema: {
+    name: "wellness_reflection",
+    strict: true,
+    schema: {
+      type: "object",
+      properties: {
+        whatIsShowingUp: {
+          type: "string",
+        },
+        whatTheyHandledWell: {
+          type: "string",
+        },
+        thoughtToRevisit: {
+          type: "string",
+        },
+        gentleNextStep: {
+          type: "string",
+        },
+      },
+      required: [
+        "whatIsShowingUp",
+        "whatTheyHandledWell",
+        "thoughtToRevisit",
+        "gentleNextStep",
+      ],
+      additionalProperties: false,
+    },
+  },
+},
     });
 
-    const reflection = response.choices[0].message.content;
+    const reflectionText = response.choices[0].message.content;
+
+    const reflection = JSON.parse(reflectionText);
 
     res.status(200).json({
       reflection,

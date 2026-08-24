@@ -165,6 +165,24 @@ const emotionData = analytics
           </button>
         </section>
 
+        <section className="checkin-card cbt-card">
+  <div>
+    <p className="card-label">DEEPER REFLECTION</p>
+    <h2>Want to explore your thoughts more deeply?</h2>
+    <p>
+      Use our optional CBT-style journal to reflect on situations,
+      thoughts, emotions, and alternative perspectives.
+    </p>
+  </div>
+
+  <button
+    className="primary-button"
+    onClick={() => navigate('/cbt-journal')}
+  >
+    Open CBT Journal
+  </button>
+</section>
+
         <section className="analytics-section">
   <div className="analytics-header">
   <p className="card-label">WELLNESS TRENDS</p>
