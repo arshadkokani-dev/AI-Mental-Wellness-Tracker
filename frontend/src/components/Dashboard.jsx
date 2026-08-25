@@ -27,7 +27,7 @@ function Dashboard() {
     try {
       const token = localStorage.getItem("token");
 
-      const response = await fetch("http://10.122.185.153:5000/api/analytics", {
+      const response = await fetch("https://mindora-juzc.onrender.com/api/analytics", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -58,7 +58,7 @@ useEffect(() => {
     const token = localStorage.getItem('token')
 
     try {
-      const response = await fetch('http://10.122.185.153:5000/api/wellness', {
+      const response = await fetch('https://mindora-juzc.onrender.com/api/wellness', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
