@@ -41,18 +41,24 @@ What they would tell a friend: ${cbtEntry?.reflection || "Not provided"}
 Return the reflection in exactly this JSON format:
 
 {
-  "whatIsShowingUp": "A concise observation about patterns or connections in the user's data.",
-  "whatTheyHandledWell": "Something the user handled well.",
-  "thoughtToRevisit": "One thought or pattern worth reconsidering.",
-  "gentleNextStep": "One small, practical next step."
+  "whatIsShowingUp": "A thoughtful, detailed observation explaining the most meaningful patterns or connections in the user's recent data.",
+  "whatTheyHandledWell": "A detailed reflection on something the user handled well, including why it matters and what it shows about their current situation.",
+  "thoughtToRevisit": "A thoughtful exploration of one pattern, assumption, or tension that may be worth reconsidering.",
+  "gentleNextStep": "A specific, realistic, and gentle next step that naturally follows from the user's recent data."
 }
 
 Rules:
-- Keep each section concise but personalized.
-- Base everything only on the provided data.
+- Each section MUST contain multiple complete sentences.
+- Make the reflection thoughtful, specific, and moderately detailed.
 - Do not simply repeat the user's answers.
+- Analyze meaningful patterns and connections in the provided data.
+- Make the reflection personalized to the user's actual data.
+- Avoid generic motivational statements.
+- Keep the tone warm, supportive, thoughtful, and non-judgmental.
+- Base everything only on the provided data.
 - Do not diagnose mental health conditions.
 - Do not provide medical advice.
+- Do not use emojis.
 - Return ONLY valid JSON. No markdown, no code fences, and no extra text.
 `;
 
@@ -72,38 +78,11 @@ Rules:
       ],
 
       temperature: 0.7,
-      max_tokens: 500,
+      max_completion_tokens: 3000,
+      reasoning_effort: "low",
       response_format: {
-  type: "json_schema",
-  json_schema: {
-    name: "wellness_reflection",
-    strict: true,
-    schema: {
-      type: "object",
-      properties: {
-        whatIsShowingUp: {
-          type: "string",
-        },
-        whatTheyHandledWell: {
-          type: "string",
-        },
-        thoughtToRevisit: {
-          type: "string",
-        },
-        gentleNextStep: {
-          type: "string",
-        },
+        type: "json_object",
       },
-      required: [
-        "whatIsShowingUp",
-        "whatTheyHandledWell",
-        "thoughtToRevisit",
-        "gentleNextStep",
-      ],
-      additionalProperties: false,
-    },
-  },
-},
     });
 
     const reflectionText = response.choices[0].message.content;

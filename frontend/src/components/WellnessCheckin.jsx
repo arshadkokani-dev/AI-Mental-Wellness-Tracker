@@ -263,22 +263,22 @@ function WellnessCheckin() {
 ) : (
       <>
         <div className="reflection-item">
-          <h3>🌿 What's showing up</h3>
+          <h3> What's showing up</h3>
           <p>{reflection.whatIsShowingUp}</p>
         </div>
 
         <div className="reflection-item">
-          <h3>💪 What you handled well</h3>
+          <h3> What you handled well</h3>
           <p>{reflection.whatTheyHandledWell}</p>
         </div>
 
         <div className="reflection-item">
-          <h3>🔎 A thought to revisit</h3>
+          <h3> A thought to revisit</h3>
           <p>{reflection.thoughtToRevisit}</p>
         </div>
 
         <div className="reflection-item">
-          <h3>🌱 Gentle next step</h3>
+          <h3> Gentle next step</h3>
           <p>{reflection.gentleNextStep}</p>
         </div>
       </>
